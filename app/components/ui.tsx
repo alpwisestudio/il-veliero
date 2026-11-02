@@ -58,15 +58,18 @@ export function PageHero({
 }) {
     return (
         <section className="chalk relative z-10 px-6 pb-24 pt-36 text-center text-white md:pb-32 md:pt-44">
-            <Image
-                src={image}
-                alt=""
-                fill
-                priority
-                placeholder="blur"
-                sizes="100vw"
-                className="animate-ken-burns object-cover"
-            />
+            {/* Contenitore che ritaglia lo zoom dello sfondo senza tagliare il bordo strappato */}
+            <div className="absolute inset-0 overflow-hidden">
+                <Image
+                    src={image}
+                    alt=""
+                    fill
+                    priority
+                    placeholder="blur"
+                    sizes="100vw"
+                    className="animate-ken-burns object-cover"
+                />
+            </div>
             <div className="absolute inset-0 bg-coal/70" />
             <div className="absolute inset-0 bg-linear-to-b from-coal/30 via-transparent to-coal" />
             <Sprig className="absolute left-4 top-20 hidden h-48 -rotate-12 text-white/15 md:block" />

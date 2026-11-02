@@ -32,15 +32,18 @@ export default function Home() {
         <>
             {/* Hero */}
             <section className="chalk relative z-10 px-6 pb-48 pt-36 text-center text-white md:pb-64 md:pt-44">
-                <Image
-                    src={hero}
-                    alt=""
-                    fill
-                    priority
-                    placeholder="blur"
-                    sizes="100vw"
-                    className="animate-ken-burns object-cover"
-                />
+                {/* Contenitore che ritaglia lo zoom dello sfondo senza tagliare pizza e bordo strappato */}
+                <div className="absolute inset-0 overflow-hidden">
+                    <Image
+                        src={hero}
+                        alt=""
+                        fill
+                        priority
+                        placeholder="blur"
+                        sizes="100vw"
+                        className="animate-ken-burns object-cover"
+                    />
+                </div>
                 <div className="absolute inset-0 bg-coal/65" />
                 <div className="absolute inset-0 bg-linear-to-b from-coal/30 via-transparent to-coal" />
                 <Sprig className="absolute left-4 top-24 hidden h-56 -rotate-12 text-white/15 md:block" />
