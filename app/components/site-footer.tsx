@@ -26,7 +26,7 @@ export function HoursList({ className = "" }: { className?: string }) {
 
 export function SiteFooter() {
     return (
-        <footer className="chalk relative px-6 pb-10 pt-20 text-white">
+        <footer className="chalk relative overflow-x-clip px-6 pb-10 pt-20 text-white">
             <Torn side="top" seed={77} />
             <div className="relative mx-auto grid max-w-6xl gap-12 text-center md:grid-cols-4 md:text-left">
                 <div className="flex flex-col items-center md:items-start">

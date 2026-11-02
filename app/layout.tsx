@@ -75,10 +75,10 @@ const jsonLd = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="it" data-scroll-behavior="smooth" className={`${raleway.variable} ${merriweather.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col overflow-x-clip font-sans">
+      <body className="min-h-full flex flex-col font-sans">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <SiteHeader />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 overflow-x-clip">{children}</main>
         <SiteFooter />
         <RevealObserver />
       </body>
