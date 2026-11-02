@@ -65,7 +65,7 @@ function FilterBar({
     onClear?: () => void;
 }) {
     return (
-        <div className="sticky top-16 z-40 border-b border-ink/10 bg-white/90 backdrop-blur-md">
+        <div className="sticky top-16 z-40 md:top-20 border-b border-ink/10 bg-white/90 backdrop-blur-md">
             <div
                 role="group"
                 aria-label="Filtra le categorie del menù"

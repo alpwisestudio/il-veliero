@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { delay } from "../components/delay";
 import Link from "next/link";
 import { CtaBand, Gallery, MenuGrid } from "../components/sections";
 import { Feature, Heading, PageHero } from "../components/ui";
@@ -55,7 +56,7 @@ export default function PizzeriaPage() {
                     <Heading kicker="Come nasce" title="La nostra pizza" light />
                     <div className="mx-auto mt-14 grid max-w-5xl gap-10 text-center md:grid-cols-3">
                         {STEPS.map((s, i) => (
-                            <div key={s.title}>
+                            <div key={s.title} data-reveal style={delay(i + 1)}>
                                 <p className="font-serif text-5xl font-black text-coral">
                                     0{i + 1}
                                 </p>
@@ -70,14 +71,14 @@ export default function PizzeriaPage() {
 
             <section className="px-6 py-28">
                 <Heading kicker="Dal forno" title="Le nostre pizze" />
-                <p className="mx-auto mt-4 max-w-md text-center text-sm text-ink/60">
+                <p data-reveal style={delay(1)} className="mx-auto mt-4 max-w-md text-center text-sm text-ink/60">
                     Una selezione dalla carta: chiedi al personale l&apos;elenco
                     completo delle oltre 60 varianti.
                 </p>
                 <div className="mt-14">
                     <MenuGrid categories={menuBy("pizze-classiche", "pizze-speciali")} />
                 </div>
-                <div className="mt-12 text-center">
+                <div data-reveal className="mt-12 text-center">
                     <Link href="/menu" className="btn btn-coral">
                         Vedi il menù completo
                     </Link>

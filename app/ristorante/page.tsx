@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { delay } from "../components/delay";
 import Link from "next/link";
 import { CtaBand, MenuGrid } from "../components/sections";
 import { Feature, Heading, PageHero } from "../components/ui";
@@ -56,7 +57,7 @@ export default function RistorantePage() {
                 <Torn side="top" seed={13} />
                 <div className="relative mx-auto grid max-w-5xl gap-10 text-center md:grid-cols-3">
                     {VALUES.map((v, i) => (
-                        <div key={v.title}>
+                        <div key={v.title} data-reveal style={delay(i)}>
                             <p className="font-serif text-5xl font-black text-coral">
                                 0{i + 1}
                             </p>
@@ -114,7 +115,7 @@ export default function RistorantePage() {
                 <div className="mt-14">
                     <MenuGrid categories={menuBy("antipasti", "primi", "mare", "terra")} />
                 </div>
-                <div className="mt-12 text-center">
+                <div data-reveal className="mt-12 text-center">
                     <Link href="/menu" className="btn btn-coral">
                         Vedi il menù completo
                     </Link>

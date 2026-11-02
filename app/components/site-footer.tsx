@@ -30,7 +30,7 @@ export function SiteFooter() {
             <Torn side="top" seed={77} />
             <div className="relative mx-auto grid max-w-6xl gap-12 text-center md:grid-cols-4 md:text-left">
                 <div className="flex flex-col items-center md:items-start">
-                    <Logo className="h-16 w-auto" />
+                    <Logo className="h-20 w-auto md:h-24" />
                     <p className="mt-4 text-xs leading-relaxed text-white/60">
                         {INFO.street}
                         <br />

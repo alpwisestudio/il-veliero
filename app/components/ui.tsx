@@ -2,6 +2,7 @@ import Image, { type StaticImageData } from "next/image";
 import Link from "next/link";
 import { Sprig, Torn } from "../decor";
 import logo from "../../public/images/il-veliero-logo.png";
+import { delay } from "./delay";
 
 /** Logo originale, con scritta bianca per i fondi scuri. */
 export function Logo({ className = "h-10 w-auto" }: { className?: string }) {
@@ -26,7 +27,7 @@ export function Heading({
     light?: boolean;
 }) {
     return (
-        <div className="text-center">
+        <div data-reveal className="text-center">
             {kicker && (
                 <p
                     className={`mb-3 text-sm font-bold ${light ? "text-white/80" : "text-coral"}`}
@@ -64,21 +65,21 @@ export function PageHero({
                 priority
                 placeholder="blur"
                 sizes="100vw"
-                className="object-cover"
+                className="animate-ken-burns object-cover"
             />
             <div className="absolute inset-0 bg-coal/70" />
             <div className="absolute inset-0 bg-linear-to-b from-coal/30 via-transparent to-coal" />
             <Sprig className="absolute left-4 top-20 hidden h-48 -rotate-12 text-white/15 md:block" />
             <Sprig className="absolute bottom-6 right-6 hidden h-40 rotate-[200deg] text-white/15 md:block" />
             <div className="relative mx-auto max-w-3xl">
-                <p className="text-sm font-bold tracking-wide text-coral">
+                <p className="hero-in text-sm font-bold tracking-wide text-coral">
                     {kicker}
                 </p>
-                <h1 className="mt-4 font-serif text-4xl font-bold leading-tight tracking-wide sm:text-5xl md:text-6xl">
+                <h1 style={delay(1)} className="hero-in mt-4 font-serif text-4xl font-bold leading-tight tracking-wide sm:text-5xl md:text-6xl">
                     {title}
                 </h1>
                 {text && (
-                    <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/75">
+                    <p style={delay(2)} className="hero-in mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/75">
                         {text}
                     </p>
                 )}
@@ -109,7 +110,8 @@ export function Feature({
     return (
         <div className="mx-auto grid max-w-5xl items-center gap-14 md:grid-cols-2">
             <div
-                className={`relative mx-auto w-full max-w-md ${reverse ? "md:order-2" : ""}`}
+                data-reveal={reverse ? "right" : "left"}
+                className={`group relative mx-auto w-full max-w-md ${reverse ? "md:order-2" : ""}`}
             >
                 <div
                     className={`absolute -bottom-4 h-full w-full rounded-xl bg-coral ${reverse ? "-left-4" : "-right-4"}`}
@@ -121,11 +123,11 @@ export function Feature({
                         fill
                         sizes="(max-width: 768px) 90vw, 448px"
                         placeholder="blur"
-                        className="object-cover"
+                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     />
                 </div>
             </div>
-            <div className="text-center md:text-left">
+            <div data-reveal style={delay(1)} className="text-center md:text-left">
                 <p className="mb-3 text-sm font-bold text-coral">{kicker}</p>
                 <h2 className="font-serif text-3xl font-bold leading-snug tracking-wide md:text-4xl">
                     {title}

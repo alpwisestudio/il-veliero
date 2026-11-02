@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { delay } from "./components/delay";
+import { CountUp } from "./components/motion";
 import { BookingSection, ReviewsSection } from "./components/sections";
 import { Feature, Heading } from "./components/ui";
 import { Basil, Sprig, Tomato, Torn } from "./decor";
@@ -37,27 +39,27 @@ export default function Home() {
                     priority
                     placeholder="blur"
                     sizes="100vw"
-                    className="object-cover"
+                    className="animate-ken-burns object-cover"
                 />
                 <div className="absolute inset-0 bg-coal/65" />
                 <div className="absolute inset-0 bg-linear-to-b from-coal/30 via-transparent to-coal" />
                 <Sprig className="absolute left-4 top-24 hidden h-56 -rotate-12 text-white/15 md:block" />
 
                 <div className="relative mx-auto max-w-3xl">
-                    <p className="text-sm font-bold tracking-wide text-white/85">
+                    <p className="hero-in text-sm font-bold tracking-wide text-white/85">
                         Ristorante · Pizzeria il Veliero di Castellanza
                     </p>
-                    <h1 className="mt-4 font-serif text-4xl font-bold leading-tight tracking-wide sm:text-5xl md:text-6xl">
+                    <h1 style={delay(1)} className="hero-in mt-4 font-serif text-4xl font-bold leading-tight tracking-wide sm:text-5xl md:text-6xl">
                         Pizza nel forno a legna,
                         <br />
                         mare e terra
                     </h1>
-                    <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/75">
+                    <p style={delay(2)} className="hero-in mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/75">
                         Oltre 60 pizze, pesce fresco, carni selezionate e la
                         nostra paella valenciana. Cucina mediterranea
                         tradizionale con un tocco contemporaneo.
                     </p>
-                    <div className="mt-10 flex flex-wrap justify-center gap-4">
+                    <div style={delay(3)} className="hero-in mt-10 flex flex-wrap justify-center gap-4">
                         <Link href="/contatti#prenota" className="btn btn-coral">
                             Prenota un tavolo
                         </Link>
@@ -79,12 +81,12 @@ export default function Home() {
                             fill
                             sizes="(max-width: 640px) 78vw, 26rem"
                             placeholder="blur"
-                            className="rounded-full object-cover shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)]"
+                            className="animate-spin-in rounded-full object-cover shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)]"
                         />
-                        <Basil className="absolute -left-14 top-[38%] w-24 -rotate-12 drop-shadow-lg md:-left-20 md:w-32" />
-                        <Basil className="absolute -left-6 top-[55%] w-16 rotate-[30deg] drop-shadow-lg md:-left-10 md:w-20" />
-                        <Tomato className="absolute -right-6 top-[30%] w-16 drop-shadow-xl md:-right-14 md:w-20" />
-                        <Tomato className="absolute -right-12 top-[48%] w-14 rotate-45 drop-shadow-xl md:-right-24 md:w-16" />
+                        <Basil className="absolute -left-14 top-[38%] w-24 -rotate-12 animate-float drop-shadow-lg md:-left-20 md:w-32" />
+                        <Basil className="absolute -left-6 top-[55%] w-16 rotate-[30deg] animate-float drop-shadow-lg [animation-delay:-2s] md:-left-10 md:w-20" />
+                        <Tomato className="absolute -right-6 top-[30%] w-16 animate-float drop-shadow-xl [animation-delay:-1s] md:-right-14 md:w-20" />
+                        <Tomato className="absolute -right-12 top-[48%] w-14 rotate-45 animate-float drop-shadow-xl [animation-delay:-3.5s] md:-right-24 md:w-16" />
                     </div>
                 </div>
                 <Torn side="bottom" seed={3} />
@@ -94,14 +96,14 @@ export default function Home() {
             <section className="relative px-6 pb-24 pt-[min(52vw,17rem)] md:pt-72">
                 <Sprig className="absolute right-6 top-40 hidden h-48 rotate-[20deg] text-ink/[0.07] md:block" />
                 <Heading title="Le nostre specialità" />
-                <p className="mx-auto mt-4 max-w-md text-center text-sm leading-relaxed text-ink/60">
+                <p data-reveal style={delay(1)} className="mx-auto mt-4 max-w-md text-center text-sm leading-relaxed text-ink/60">
                     Ingredienti freschi e di stagione, dal forno a legna alla
                     griglia. Ogni giorno, a pranzo e a cena.
                 </p>
                 <div className="mx-auto mt-12 grid max-w-5xl grid-cols-2 gap-5 md:grid-cols-4">
-                    {SPECIALS.map((s) => (
-                        <Link key={s.label} href={s.href} className="group text-center">
-                            <div className="relative aspect-[4/3] overflow-hidden rounded-xl shadow-md">
+                    {SPECIALS.map((s, i) => (
+                        <Link key={s.label} href={s.href} data-reveal style={delay(i + 1)} className="group text-center">
+                            <div className="relative aspect-[4/3] overflow-hidden rounded-xl shadow-md transition-shadow duration-300 group-hover:shadow-2xl">
                                 <Image
                                     src={s.img}
                                     alt={s.alt}
@@ -117,7 +119,7 @@ export default function Home() {
                         </Link>
                     ))}
                 </div>
-                <div className="mt-12 text-center">
+                <div data-reveal className="mt-12 text-center">
                     <a href={INFO.phoneHref} className="btn btn-leaf">
                         Chiamaci ora
                     </a>
@@ -142,17 +144,17 @@ export default function Home() {
                 <Torn side="top" seed={11} />
                 <Sprig className="absolute left-6 top-10 hidden h-44 rotate-12 text-white/10 md:block" />
                 <div className="relative mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-2">
-                    <div className="relative aspect-[4/3] overflow-hidden rounded-xl shadow-2xl md:-rotate-2">
+                    <div data-reveal="left" className="group relative aspect-[4/3] overflow-hidden rounded-xl shadow-2xl md:-rotate-2">
                         <Image
                             src={sala}
                             alt="Tavola apparecchiata al ristorante"
                             fill
                             sizes="(max-width: 768px) 100vw, 560px"
                             placeholder="blur"
-                            className="object-cover"
+                            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                         />
                     </div>
-                    <div className="text-center md:text-left">
+                    <div data-reveal="right" style={delay(1)} className="text-center md:text-left">
                         <p className="mb-3 text-sm font-bold text-coral">La location</p>
                         <h2 className="font-serif text-3xl font-bold leading-snug tracking-wide md:text-4xl">
                             Pietra a vista, travi in legno e un giardino per
@@ -172,7 +174,9 @@ export default function Home() {
                                 ["1", "Giardino"],
                             ].map(([n, l]) => (
                                 <div key={l}>
-                                    <dt className="font-serif text-4xl font-black text-coral">{n}</dt>
+                                    <dt className="font-serif text-4xl font-black text-coral">
+                                        <CountUp value={n} />
+                                    </dt>
                                     <dd className="mt-1 text-xs font-semibold uppercase tracking-[0.2em] text-white/60">
                                         {l}
                                     </dd>

@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { delay } from "../components/delay";
+import { CountUp } from "../components/motion";
 import { CtaBand, Gallery, MapEmbed } from "../components/sections";
 import { Feature, Heading, PageHero } from "../components/ui";
 import { Torn } from "../decor";
@@ -77,9 +79,11 @@ export default function LocationPage() {
             <section className="chalk relative z-10 px-6 py-24 text-white">
                 <Torn side="top" seed={19} />
                 <div className="relative mx-auto grid max-w-5xl gap-10 text-center md:grid-cols-3">
-                    {SPACES.map((s) => (
-                        <div key={s.title}>
-                            <p className="font-serif text-5xl font-black text-coral">{s.n}</p>
+                    {SPACES.map((s, i) => (
+                        <div key={s.title} data-reveal style={delay(i)}>
+                            <p className="font-serif text-5xl font-black text-coral">
+                                <CountUp value={s.n} />
+                            </p>
                             <h3 className="mt-3 font-serif text-xl font-bold">{s.title}</h3>
                             <p className="mt-2 text-sm text-white/65">{s.text}</p>
                         </div>
@@ -106,7 +110,7 @@ export default function LocationPage() {
 
             <section className="bg-ink/[0.03] px-6 py-28">
                 <Heading kicker="Come raggiungerci" title="Dove siamo" />
-                <p className="mx-auto mt-4 max-w-md text-center text-sm text-ink/60">
+                <p data-reveal style={delay(1)} className="mx-auto mt-4 max-w-md text-center text-sm text-ink/60">
                     {INFO.street}, {INFO.zip} {INFO.city} ({INFO.province}).
                     Testo segnaposto: indicazioni su parcheggio e mezzi
                     pubblici.

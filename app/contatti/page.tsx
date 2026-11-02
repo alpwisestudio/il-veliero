@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { delay } from "../components/delay";
 import { BookingSection, ContactCard, MapEmbed } from "../components/sections";
 import { HoursList } from "../components/site-footer";
 import { Heading, PageHero } from "../components/ui";
@@ -25,7 +26,7 @@ export default function ContattiPage() {
                 <div className="mx-auto grid max-w-5xl gap-8 md:grid-cols-[1fr_1.5fr]">
                     <div className="space-y-8">
                         <ContactCard />
-                        <div className="rounded-xl border border-ink/10 bg-white p-8 shadow-sm">
+                        <div data-reveal style={delay(1)} className="rounded-xl border border-ink/10 bg-white p-8 shadow-sm">
                             <p className="text-xs font-bold uppercase tracking-[0.2em] text-coral">
                                 Orari di apertura
                             </p>
@@ -40,7 +41,7 @@ export default function ContattiPage() {
 
             <section className="px-6 py-28 text-center">
                 <Heading kicker="Domande?" title="Scrivici quando vuoi" />
-                <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-ink/60">
+                <p data-reveal style={delay(1)} className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-ink/60">
                     Testo segnaposto: informazioni su eventi privati, menù per
                     gruppi, allergie e richieste particolari.
                 </p>

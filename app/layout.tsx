@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Merriweather, Raleway } from "next/font/google";
 import { SiteFooter } from "./components/site-footer";
 import { SiteHeader } from "./components/site-header";
+import { RevealObserver } from "./components/motion";
 import { INFO } from "./info";
 import "./globals.css";
 
@@ -79,6 +80,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <SiteFooter />
+        <RevealObserver />
       </body>
     </html>
   );

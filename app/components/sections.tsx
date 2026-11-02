@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BookingForm } from "../booking-form";
 import { Basil, Sprig, Tomato, Torn } from "../decor";
 import { INFO, LOREM, REVIEWS } from "../info";
+import { delay } from "./delay";
 import { Heading } from "./ui";
 
 export { MenuGrid } from "./menu-grid";
@@ -17,6 +18,8 @@ export function Gallery({
             {images.map((g, i) => (
                 <div
                     key={g.alt}
+                    data-reveal="zoom"
+                    style={delay(i)}
                     className={`group relative aspect-square overflow-hidden rounded-xl ${
                         i === 0
                             ? "col-span-2 md:row-span-2"
@@ -47,7 +50,8 @@ export function ReviewsSection() {
             <Heading kicker="Dicono di noi" title="Le recensioni dei clienti" light />
             <div className="relative mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-3">
                 {REVIEWS.map((r, i) => (
-                    <figure key={i} className="rounded-xl bg-white p-8 text-ink shadow-xl">
+                    <div key={i} data-reveal style={delay(i + 1)}>
+                    <figure className="h-full rounded-xl bg-white p-8 text-ink shadow-xl transition duration-300 hover:-translate-y-1.5 hover:shadow-2xl">
                         <div className="text-lg tracking-widest text-coral" aria-label="5 stelle su 5">
                             ★★★★★
                         </div>
@@ -59,6 +63,7 @@ export function ReviewsSection() {
                             <span className="text-xs text-ink/50">{r.source}</span>
                         </figcaption>
                     </figure>
+                    </div>
                 ))}
             </div>
         </section>
@@ -71,11 +76,11 @@ export function BookingSection() {
             <Torn side="top" seed={41} />
             <div className="relative mx-auto max-w-5xl">
                 <Heading kicker="Prenotazioni" title="Prenota il tuo tavolo" light />
-                <p className="mx-auto mt-4 max-w-md text-center text-sm text-white/70">
+                <p data-reveal style={delay(1)} className="mx-auto mt-4 max-w-md text-center text-sm text-white/70">
                     Compila il modulo: la richiesta arriva su WhatsApp e ti
                     confermiamo la disponibilità in breve tempo.
                 </p>
-                <div className="relative mx-auto mt-12 max-w-xl">
+                <div data-reveal="zoom" style={delay(2)} className="relative mx-auto mt-12 max-w-xl">
                     <Tomato className="absolute -left-20 -top-8 hidden w-20 drop-shadow-2xl md:block" />
                     <Basil className="absolute -right-24 bottom-10 hidden w-32 -rotate-12 drop-shadow-2xl md:block" />
                     <div className="relative rounded-2xl bg-white p-8 text-ink shadow-2xl md:p-10">
@@ -90,7 +95,7 @@ export function BookingSection() {
 
 export function ContactCard() {
     return (
-        <address className="space-y-5 rounded-xl border border-ink/10 bg-white p-8 not-italic shadow-sm">
+        <address data-reveal className="space-y-5 rounded-xl border border-ink/10 bg-white p-8 not-italic shadow-sm">
             <div>
                 <p className="text-xs font-bold uppercase tracking-[0.2em] text-coral">Indirizzo</p>
                 <p className="mt-1 font-serif text-lg font-bold leading-snug">
@@ -137,7 +142,7 @@ export function ContactCard() {
 
 export function MapEmbed() {
     return (
-        <div className="min-h-80 overflow-hidden rounded-xl shadow-md">
+        <div data-reveal style={delay(1)} className="min-h-80 overflow-hidden rounded-xl shadow-md">
             <iframe
                 title={`Mappa — ${INFO.fullName}`}
                 src={`https://maps.google.com/maps?q=${encodeURIComponent(INFO.mapsQuery)}&z=16&output=embed`}
@@ -154,8 +159,8 @@ export function CtaBand({ title, text }: { title: string; text: string }) {
     return (
         <section className="px-6 py-24 text-center">
             <Heading title={title} />
-            <p className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-ink/60">{text}</p>
-            <div className="mx-auto mt-10 flex max-w-md flex-wrap justify-center gap-4">
+            <p data-reveal style={delay(1)} className="mx-auto mt-4 max-w-md text-sm leading-relaxed text-ink/60">{text}</p>
+            <div data-reveal style={delay(2)} className="mx-auto mt-10 flex max-w-md flex-wrap justify-center gap-4">
                 <Link href="/contatti#prenota" className="btn btn-coral">
                     Prenota un tavolo
                 </Link>
